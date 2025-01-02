@@ -1,0 +1,10 @@
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/src/CMakeFiles/Library.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/src/CMakeFiles/edit_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/src/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/inc/CMakeFiles/edit_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/inc/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/app/CMakeFiles/main.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/app/CMakeFiles/edit_cache.dir
+/mnt/c/Users/tartarus/VisualStudioWorkspace/general/build/app/CMakeFiles/rebuild_cache.dir

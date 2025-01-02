@@ -1,2 +1,2 @@
-# Data-Structre-
+# Data-Structure
 Some data structre examples

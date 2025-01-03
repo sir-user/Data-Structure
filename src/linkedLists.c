@@ -1,16 +1,16 @@
 #include "linkedLists.h"
 
-struct Node *create_from_arr(int arr[], int n){
+struct Node_Singly *create_single_from_arr(int arr[], int n){
     /*
     * brief:    Creates an singly linked list from an array.
     */
-    struct Node *head, *t, *last;
-    head=(struct Node *)malloc(sizeof(struct Node));
+    struct Node_Singly *head, *t, *last;
+    head=(struct Node_Singly *)malloc(sizeof(struct Node_Singly));
     head->data = arr[0];
     head->next = NULL;
     last = head;
     for (int i = 1; i < n; i++){
-        t = (struct Node *)malloc(sizeof(struct Node));
+        t = (struct Node_Singly *)malloc(sizeof(struct Node_Singly));
         t->data = arr[i];
         t->next = NULL;
         last->next = t;
@@ -19,7 +19,7 @@ struct Node *create_from_arr(int arr[], int n){
     return head;
 }
 
-void display(struct Node *head){
+void display_single(struct Node_Singly *head){
     /*
     * brief:    Prints whole linked list.
     */
@@ -32,7 +32,7 @@ void display(struct Node *head){
     printf("\n");
 }
 
-int count(struct Node *head){
+int count_singly(struct Node_Singly *head){
     /*
     * brief:    Returns number of nodes in linked list.
     */
@@ -45,7 +45,7 @@ int count(struct Node *head){
     return amount;
 }
 
-int maxofll(struct Node *head){
+int maxofll_singly(struct Node_Singly *head){
     /*
     * brief:    Returns greatest value in linked list.
     */
@@ -58,7 +58,7 @@ int maxofll(struct Node *head){
     return max;
 }
 
-struct Node *linear_search(struct Node *head, int value){
+struct Node_Singly *linear_search_singly(struct Node_Singly *head, int value){
     /*
     * brief:    Returns first node found you looked for.
     */
@@ -71,7 +71,7 @@ struct Node *linear_search(struct Node *head, int value){
     return NULL;
 }
 
-void move_to_head(struct Node **head, int value){
+void move_to_head_singly(struct Node_Singly **head, int value){
     /*
     * brief:    Replaces the first node found looked for to head.
     */
@@ -79,7 +79,7 @@ void move_to_head(struct Node **head, int value){
     if (*head == NULL || (*head)->data == value) {
         return;
     }
-    struct Node *prev = NULL, *current = *head;
+    struct Node_Singly *prev = NULL, *current = *head;
     while (*head!=NULL)
     {
         if (current->data == value){
@@ -93,14 +93,14 @@ void move_to_head(struct Node **head, int value){
     }
 }
 
-void insert(struct Node **head, int value, int index){
+void insert_singly(struct Node_Singly **head, int value, int index){
     /*
-    * brief:    Inserts node to index given.
+    * brief:    Inserts a node to index given.
     */
     assert(index>=0);
 
-    struct Node *new_node = NULL, *prev = NULL, *current = *head;
-    new_node=(struct Node *)malloc(sizeof(struct Node));
+    struct Node_Singly *new_node = NULL, *prev = NULL, *current = *head;
+    new_node=(struct Node_Singly *)malloc(sizeof(struct Node_Singly));
     new_node->data = value;
 
     if (index == 0){
@@ -126,16 +126,15 @@ void insert(struct Node **head, int value, int index){
         printf(RESETTEXT);
         free(new_node);  // Free the allocated memory for the new node
     }
-
 }   
 
-void delete(struct Node **head, int index){
+void delete_singly(struct Node_Singly **head, int index){
     /*
     * brief:    Removes the node on the given index.
     */
     assert(index>=0);
 
-    struct Node *prev = NULL, *current = *head;
+    struct Node_Singly *prev = NULL, *current = *head;
 
     if (index == 0){
         *head = (*head)->next;
@@ -143,7 +142,7 @@ void delete(struct Node **head, int index){
     }
 
     int i = 0;
-    while (*head!=NULL && i<index){        
+    while (current!=NULL && i<index){        
         prev = current;         
         current = current->next;
         i++;
@@ -160,11 +159,11 @@ void delete(struct Node **head, int index){
     }
 }
 
-void reverse(struct Node **head){
+void reverse_singly(struct Node_Singly **head){
     /*
     * brief:    Reverses the whole linked list. 
     */
-    struct Node *prev = NULL, *next = NULL, *current = *head;
+    struct Node_Singly *prev = NULL, *next = NULL, *current = *head;
 
     while (current != NULL) {
         next = current->next; 
@@ -175,24 +174,24 @@ void reverse(struct Node **head){
     *head = prev;
 }
 
-void merge(struct Node **first, struct Node **second){
+void merge_singly(struct Node_Singly **first, struct Node_Singly **second){
     /*
     * brief:    Merges linked lists into first.
     */
-    struct Node *current = *first;
+    struct Node_Singly *current = *first;
     while (current->next != NULL) {
         current = current->next;
     }
     current->next = (*second);
 }
 
-void sort_ll(struct Node **head){
+void sort_ll_singly(struct Node_Singly **head){
     /*
     * brief:    
     */
     assert((*head) != NULL && (*head)->next != NULL && "should not be empty or single node");
 
-    struct Node *current = NULL, *next = NULL;
+    struct Node_Singly *current = NULL, *next = NULL;
 
     int swapped, temp;  
 
@@ -214,7 +213,7 @@ void sort_ll(struct Node **head){
     } while (swapped);
 }
 
-bool is_it_sorted(struct Node *head){
+bool is_it_sorted_singly(struct Node_Singly *head){
     /*
     * brief:    Returns true or false depends on if it is sorted linked list.
     */
@@ -222,7 +221,7 @@ bool is_it_sorted(struct Node *head){
         return false; 
     }
 
-    struct Node *prev = NULL, *current = head;
+    struct Node_Singly *prev = NULL, *current = head;
 
     prev = current;
 
@@ -236,7 +235,7 @@ bool is_it_sorted(struct Node *head){
     return true;
 }
 
-void merge_sorted(struct Node **merged, struct Node *first, struct Node *second){
+void merge_sorted_singly(struct Node_Singly **merged, struct Node_Singly *first, struct Node_Singly *second){
     /*
     * brief:    Merges already sorted 2 linked lists into first paramater(merged). 
     */
@@ -252,7 +251,7 @@ void merge_sorted(struct Node **merged, struct Node *first, struct Node *second)
         second = second->next;
     }
     
-    struct Node *head_merged = *merged;
+    struct Node_Singly *head_merged = *merged;
 
     while(first != NULL && second != NULL){
         if (first->data < second->data){
@@ -274,3 +273,269 @@ void merge_sorted(struct Node **merged, struct Node *first, struct Node *second)
     }
     *merged = head_merged;
 }
+
+bool is_it_circular_singly(struct Node_Singly *head){
+    /*
+    * brief:    Floyd's Cycle Detection
+    *           There are slow and fast pointers they moves along the linked list.
+    *           If there is a cycle, they will eventually come across with each other.
+    */
+    struct Node_Singly *slow = head, *fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast) {
+            return 1;
+        }
+    }
+    return 0; 
+}
+
+void display_circular_singly(struct Node_Singly *head){
+    /*
+    * brief:    Prints an whole circular array. Head to tail to head
+    */
+    
+    assert(head!=NULL);
+
+    struct Node_Singly *head_keeper = head;
+
+    printf("Nodes : ");
+    do{
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    while (head!=head_keeper);
+
+    printf("\n");
+}
+
+void insert_into_circular_singly(struct Node_Singly **head, int value, int index){
+    /*
+    * brief:    Inserts a node into circular array.
+    */
+    
+    assert((*head)!=NULL && index>=0);
+
+    struct Node_Singly *new_node = NULL, *prev = NULL, *current = *head, *head_keeper= NULL;
+    new_node=(struct Node_Singly *)malloc(sizeof(struct Node_Singly));
+    new_node->data = value;
+
+    head_keeper = current;
+
+    if (index == 0){
+        new_node->next = *head;
+        *head = new_node;   
+        
+        while (current->next!=head_keeper){
+            current = current->next;
+        }
+        current->next = *head;
+        return;
+    }
+
+    int i = 0;
+    do{
+        prev = current;         
+        current = current->next;
+        i++;
+    }
+    while (current!=head_keeper && i<index);
+    
+    if (i==index){
+            new_node->next = current;  
+            prev->next = new_node;      
+    }
+    else {
+        printf(FORERED);
+        printf("[ERROR] Index out of bounds, could not inserted.\n");
+        printf(RESETTEXT);
+        free(new_node);  // Free the allocated memory for the new node
+    }
+}
+
+void delete_from_circular_singly(struct Node_Singly **head, int index){
+    /*
+    * brief:    Removes the node on the given index.
+    */
+    assert(index>=0);
+
+    struct Node_Singly *prev = NULL, *current = *head;
+
+
+    if (index == 0){
+        while(current->next != *head){
+            current = current->next;
+        }
+        *head = (*head)->next;
+        current->next = *head;
+        return;
+    }
+
+    int i = 0;
+    do{
+        prev = current;           
+        current = current->next;
+        i++;
+    }
+    while (current!=(*head) && i<index);
+    
+    if (i==index){
+            prev->next = current->next;
+            free(current);    
+    }
+    else {
+        printf(FORERED);
+        printf("[ERROR] Index out of bounds.\n");
+        printf(RESETTEXT);
+    }
+}
+
+
+struct Node_Doubly *create_double_from_arr_doubly(int arr[], int n){
+    /*
+    * brief:    Creates an doubly linked list from an array.
+    */
+    struct Node_Doubly *head, *node, *last;
+    head=(struct Node_Doubly *)malloc(sizeof(struct Node_Doubly));
+    head->data = arr[0];
+    head->next = NULL;
+    head->prev = NULL;
+    last = head;
+    for (int i = 1; i < n; i++){
+        node = (struct Node_Doubly *)malloc(sizeof(struct Node_Doubly));
+        node->data = arr[i];
+        node->next = NULL;
+        node->prev = last;
+        last->next = node;
+        last = node;
+    }
+    return head;
+}
+
+void display_doubly_forward(struct Node_Doubly *head){
+    /*
+    * brief:    Prints whole single linked list to forward direction.
+    */
+    printf("Nodes : ");
+    while (head!=NULL)
+    {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+void display_doubly_backward(struct Node_Doubly *head){
+    /*
+    * brief:    Prints whole single linked list to forward direction.
+    */
+
+    while(head->next != NULL){
+        head = head->next;
+    }
+    printf("Nodes : ");
+    while (head!=NULL)
+    {
+        printf("%d ", head->data);
+        head = head->prev;
+    }
+    printf("\n");
+}
+
+void insert_into_doubly(struct Node_Doubly **head, int value, int index){
+    /*
+    * brief:    Inserts a node to index given.
+    */
+    assert(index>=0);
+
+    struct Node_Doubly *new_node = NULL, *prev, *current = *head;
+    new_node=(struct Node_Doubly *)malloc(sizeof(struct Node_Doubly));
+    new_node->data = value;
+
+    if (index == 0){
+        (*head)->prev = new_node;
+        new_node->next = *head;
+        *head = new_node; 
+        return;
+    }
+
+    int i = 0;
+    while (current->next!=NULL && i<index){   
+        current = current->next;
+        i++;
+    }
+
+    if (current->next == NULL && index - i == 1){
+        current->next = new_node;
+        new_node->prev = current;
+    }
+    else if (i==index){
+        new_node->next = current;  
+        new_node->prev = current->prev;
+        current->prev->next = new_node;
+        current->prev = new_node;
+    }
+    else {
+        printf(FORERED);
+        printf("[ERROR] Index out of bounds, could not inserted.\n");
+        printf(RESETTEXT);
+        free(new_node);  // Free the allocated memory for the new node
+    }
+}
+
+void delete_doubly(struct Node_Doubly **head, int index){
+    /*
+    * brief:    Removes the node on the given index.
+    */
+    assert(index>=0);
+
+    struct Node_Doubly *prev = NULL, *current = *head;
+
+    if (index == 0){
+        *head = (*head)->next;
+        (*head)->prev = NULL;
+        return;
+    }
+
+    int i = 0;
+    while (current->next!=NULL && i<index){
+        current = current->next;
+        i++;
+    }
+
+    if (current->next == NULL && i==index){
+        prev = current->prev;
+        free(current);
+        prev->next = NULL;
+    }
+    else if (i==index){
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+        free(current);    
+    }
+    else {
+        printf(FORERED);
+        printf("[ERROR] Index out of bounds.\n");
+        printf(RESETTEXT);
+    }
+}
+
+void reverse_doubly(struct Node_Doubly **head){
+    /*
+    * brief:    Reverses the whole linked list. 
+    */
+    struct Node_Doubly *prev = NULL, *next = NULL, *current = *head;
+
+    while (current != NULL) {
+        next = current->next; 
+        current->next = prev; 
+        current->prev = next;
+        prev = current;       
+        current = next;  
+    }
+    *head = prev;
+}
+

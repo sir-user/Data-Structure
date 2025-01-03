@@ -10,35 +10,64 @@
 #include "colors.h"
 
 
-struct Node
+struct Node_Singly
 {
     int data;
-    struct Node *next;
+    struct Node_Singly *next;
 };
 
-struct Node *create_from_arr(int arr[], int n);
+struct Node_Doubly
+{
+    int data;
+    struct Node_Doubly *prev;
+    struct Node_Doubly *next;
+};
 
-void display(struct Node *p);
+struct Node_Singly *create_single_from_arr(int arr[], int n);
 
-int count(struct Node *p);
+void display_single(struct Node_Singly *p);
 
-int maxofll(struct Node *p);
+int count_singly(struct Node_Singly *p);
 
-struct Node *linear_search(struct Node *head, int value);
+int maxofll_singly(struct Node_Singly *p);
 
-void move_to_head(struct Node **head, int value);
+struct Node_Singly *linear_search_singly(struct Node_Singly *head, int value);
 
-void insert(struct Node **head, int value, int index);
+void move_to_head_singly(struct Node_Singly **head, int value);
 
-void delete(struct Node **head, int index);
+void insert_singly(struct Node_Singly **head, int value, int index);
 
-void reverse(struct Node **head);
+void delete_singly(struct Node_Singly **head, int index);
 
-void merge(struct Node **first, struct Node **second);
+void reverse_singly(struct Node_Singly **head);
 
-void merge_sorted(struct Node **merged, struct Node *first, struct Node *second);
+void merge_singly(struct Node_Singly **first, struct Node_Singly **second);
 
-bool is_it_sorted(struct Node *head);
+void merge_sorted_singly(struct Node_Singly **merged, struct Node_Singly *first, struct Node_Singly *second);
 
-void sort_ll(struct Node **head);
+bool is_it_sorted_singly(struct Node_Singly *head);
+
+bool is_it_circular_singly(struct Node_Singly *head);
+
+void sort_ll_singly(struct Node_Singly **head);
+
+void display_circular_singly(struct Node_Singly *head);
+
+void insert_into_circular_singly(struct Node_Singly **head, int value, int index);
+
+void delete_from_circular_singly(struct Node_Singly **head, int index);
+
+struct Node_Doubly *create_double_from_arr_doubly(int arr[], int n);
+
+void display_doubly_forward(struct Node_Doubly *head);
+
+void display_doubly_backward(struct Node_Doubly *head);
+
+void insert_into_doubly(struct Node_Doubly **head, int value, int index);
+
+void delete_doubly(struct Node_Doubly **head, int index);
+
+void reverse_doubly(struct Node_Doubly **head);
+
+
 #endif

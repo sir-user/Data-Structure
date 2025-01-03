@@ -26,9 +26,7 @@ int main(){
     display(first);
     display(second);
     
-    merge_sorted(&merged, first, second);
-    
-    display(merged);
+
     return 0;
 }
 

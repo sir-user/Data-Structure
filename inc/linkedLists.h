@@ -16,8 +16,6 @@ struct Node
     struct Node *next;
 };
 
-extern struct Node *first;
-
 struct Node *create_from_arr(int arr[], int n);
 
 void display(struct Node *p);

@@ -1,13 +1,15 @@
 #include "linkedLists.h"
 
 struct Node *create_from_arr(int arr[], int n){
-    int i; 
+    /*
+    * brief:    Creates an singly linked list from an array.
+    */
     struct Node *head, *t, *last;
     head=(struct Node *)malloc(sizeof(struct Node));
     head->data = arr[0];
     head->next = NULL;
     last = head;
-    for (i = 1; i < n; i++){
+    for (int i = 1; i < n; i++){
         t = (struct Node *)malloc(sizeof(struct Node));
         t->data = arr[i];
         t->next = NULL;
@@ -18,6 +20,9 @@ struct Node *create_from_arr(int arr[], int n){
 }
 
 void display(struct Node *head){
+    /*
+    * brief:    Prints whole linked list.
+    */
     printf("Nodes : ");
     while (head!=NULL)
     {
@@ -28,6 +33,9 @@ void display(struct Node *head){
 }
 
 int count(struct Node *head){
+    /*
+    * brief:    Returns number of nodes in linked list.
+    */
     int amount = 0;
     while (head!=NULL)
     {
@@ -38,6 +46,9 @@ int count(struct Node *head){
 }
 
 int maxofll(struct Node *head){
+    /*
+    * brief:    Returns greatest value in linked list.
+    */
     int max = INT_MIN;
     while (head!=NULL)
     {
@@ -48,6 +59,9 @@ int maxofll(struct Node *head){
 }
 
 struct Node *linear_search(struct Node *head, int value){
+    /*
+    * brief:    Returns first node found you looked for.
+    */
     while (head!=NULL)
     {
         if (head->data == value)
@@ -58,6 +72,9 @@ struct Node *linear_search(struct Node *head, int value){
 }
 
 void move_to_head(struct Node **head, int value){
+    /*
+    * brief:    Replaces the first node found looked for to head.
+    */
 
     if (*head == NULL || (*head)->data == value) {
         return;
@@ -77,6 +94,9 @@ void move_to_head(struct Node **head, int value){
 }
 
 void insert(struct Node **head, int value, int index){
+    /*
+    * brief:    Inserts node to index given.
+    */
     assert(index>=0);
 
     struct Node *new_node = NULL, *prev = NULL, *current = *head;
@@ -102,7 +122,7 @@ void insert(struct Node **head, int value, int index){
     }
     else {
         printf(FORERED);
-        printf("[ERROR] Index out of bounds.\n");
+        printf("[ERROR] Index out of bounds, could not inserted.\n");
         printf(RESETTEXT);
         free(new_node);  // Free the allocated memory for the new node
     }
@@ -110,6 +130,9 @@ void insert(struct Node **head, int value, int index){
 }   
 
 void delete(struct Node **head, int index){
+    /*
+    * brief:    Removes the node on the given index.
+    */
     assert(index>=0);
 
     struct Node *prev = NULL, *current = *head;
@@ -138,6 +161,9 @@ void delete(struct Node **head, int index){
 }
 
 void reverse(struct Node **head){
+    /*
+    * brief:    Reverses the whole linked list. 
+    */
     struct Node *prev = NULL, *next = NULL, *current = *head;
 
     while (current != NULL) {
@@ -150,6 +176,9 @@ void reverse(struct Node **head){
 }
 
 void merge(struct Node **first, struct Node **second){
+    /*
+    * brief:    Merges linked lists into first.
+    */
     struct Node *current = *first;
     while (current->next != NULL) {
         current = current->next;
@@ -158,9 +187,10 @@ void merge(struct Node **first, struct Node **second){
 }
 
 void sort_ll(struct Node **head){
-    /*if ((*head) == NULL || (*head)->next == NULL) {
-        return ; 
-    }*/
+    /*
+    * brief:    
+    */
+    assert((*head) != NULL && (*head)->next != NULL && "should not be empty or single node");
 
     struct Node *current = NULL, *next = NULL;
 
@@ -185,6 +215,9 @@ void sort_ll(struct Node **head){
 }
 
 bool is_it_sorted(struct Node *head){
+    /*
+    * brief:    Returns true or false depends on if it is sorted linked list.
+    */
     if (head == NULL || head->next == NULL) {
         return false; 
     }
@@ -208,7 +241,7 @@ void merge_sorted(struct Node **merged, struct Node *first, struct Node *second)
     * brief:    Merges already sorted 2 linked lists into first paramater(merged). 
     */
 
-    //assert(first == NULL || second == NULL);
+    assert(first != NULL && second != NULL && "should not be empty or single node");
 
     if (first->data < second->data){
         (*merged) = first;

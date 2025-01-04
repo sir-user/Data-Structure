@@ -23,51 +23,51 @@ struct Node_Doubly
     struct Node_Doubly *next;
 };
 
-struct Node_Singly *create_single_from_arr(int arr[], int n);
+struct Node_Singly *ll_create_single_from_arr(int arr[], int n);
 
-void display_single(struct Node_Singly *p);
+void ll_display_single(struct Node_Singly *p);
 
-int count_singly(struct Node_Singly *p);
+int ll_count_singly(struct Node_Singly *p);
 
-int maxofll_singly(struct Node_Singly *p);
+int ll_maxofll_singly(struct Node_Singly *p);
 
-struct Node_Singly *linear_search_singly(struct Node_Singly *head, int value);
+struct Node_Singly *ll_linear_search_singly(struct Node_Singly *head, int value);
 
-void move_to_head_singly(struct Node_Singly **head, int value);
+void ll_move_to_head_singly(struct Node_Singly **head, int value);
 
-void insert_singly(struct Node_Singly **head, int value, int index);
+void ll_insert_singly(struct Node_Singly **head, int value, int index);
 
-void delete_singly(struct Node_Singly **head, int index);
+void ll_delete_singly(struct Node_Singly **head, int index);
 
-void reverse_singly(struct Node_Singly **head);
+void ll_reverse_singly(struct Node_Singly **head);
 
-void merge_singly(struct Node_Singly **first, struct Node_Singly **second);
+void ll_merge_singly(struct Node_Singly **first, struct Node_Singly **second);
 
-void merge_sorted_singly(struct Node_Singly **merged, struct Node_Singly *first, struct Node_Singly *second);
+void ll_merge_sorted_singly(struct Node_Singly **merged, struct Node_Singly *first, struct Node_Singly *second);
 
-bool is_it_sorted_singly(struct Node_Singly *head);
+bool ll_is_it_sorted_singly(struct Node_Singly *head);
 
-bool is_it_circular_singly(struct Node_Singly *head);
+bool ll_is_it_circular_singly(struct Node_Singly *head);
 
-void sort_ll_singly(struct Node_Singly **head);
+void ll_sort_ll_singly(struct Node_Singly **head);
 
-void display_circular_singly(struct Node_Singly *head);
+void ll_display_circular_singly(struct Node_Singly *head);
 
-void insert_into_circular_singly(struct Node_Singly **head, int value, int index);
+void ll_insert_into_circular_singly(struct Node_Singly **head, int value, int index);
 
-void delete_from_circular_singly(struct Node_Singly **head, int index);
+void ll_delete_from_circular_singly(struct Node_Singly **head, int index);
 
-struct Node_Doubly *create_double_from_arr_doubly(int arr[], int n);
+struct Node_Doubly *ll_create_double_from_arr_doubly(int arr[], int n);
 
-void display_doubly_forward(struct Node_Doubly *head);
+void ll_display_doubly_forward(struct Node_Doubly *head);
 
-void display_doubly_backward(struct Node_Doubly *head);
+void ll_display_doubly_backward(struct Node_Doubly *head);
 
-void insert_into_doubly(struct Node_Doubly **head, int value, int index);
+void ll_insert_into_doubly(struct Node_Doubly **head, int value, int index);
 
-void delete_doubly(struct Node_Doubly **head, int index);
+void ll_delete_doubly(struct Node_Doubly **head, int index);
 
-void reverse_doubly(struct Node_Doubly **head);
+void ll_reverse_doubly(struct Node_Doubly **head);
 
 
 #endif

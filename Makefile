@@ -11,6 +11,8 @@ standart:
 	rm -rf build
 	mkdir build
 	cd build; cmake ..; cmake --build .
+
+runmain:
 	cd build/app && ./main
 
 dependency:

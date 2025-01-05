@@ -20,7 +20,7 @@ int main(){
     s_ll_pop(&st);
 
     s_ll_display(st);
-    
+
     s_ll_peek(st, 0);
     s_ll_peek(st, 1);
     s_ll_peek(st, 2);

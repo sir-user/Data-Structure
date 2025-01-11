@@ -8,7 +8,13 @@ set(EXECUTABLE_NAME main)
 set(LIBRARY_NAME Library)
 
 
+option(ENABLE_EXAMPLES "to enable examples" ON)
+
 add_subdirectory(src)
 add_subdirectory(inc)
 add_subdirectory(app)
-add_subdirectory(examples)
+
+if(ENABLE_EXAMPLES)
+    set(EXAMPLE_PARANTHESIS stack_paranthesis_matching)
+    add_subdirectory(examples)
+endif()

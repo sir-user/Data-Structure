@@ -1,1 +1,1 @@
-cp -r app inc src CMakeLists.txt Makefile .gitignore README.md togit.sh ../../Documents/GitHub/Data-Structure/
+cp -r * ../../Documents/GitHub/Data-Structure/

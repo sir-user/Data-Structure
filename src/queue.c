@@ -147,3 +147,21 @@ void q_ll_display(Queue_ll *que){
         printf("\n");
     }
 }
+
+int q_ll_count(Queue_ll *que){
+    if (que->front == NULL) {
+        printf(FORERED);
+        printf("[ERROR] Queue is empty, could not counted!\n");
+        printf(RESETTEXT);
+        return 0;
+    }
+    else{
+        int counter = 0;
+        Queue_Node_Singly *temp = que->front;
+        while (temp) {
+            temp = temp->next;
+            counter++;
+        }
+        return counter;
+    }
+}

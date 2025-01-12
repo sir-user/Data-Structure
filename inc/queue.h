@@ -61,7 +61,9 @@ void q_ll_enqueue(Queue_ll *que, int data);
 
 void q_ll_dequeue(Queue_ll *que);
 
-void q_ll_display(Queue_ll *queue);
+void q_ll_display(Queue_ll *que);
+
+int q_ll_count(Queue_ll *que);
 
 #endif
 

@@ -66,3 +66,84 @@ void q_arr_display_queue(Queue_Arr que){
 
     printf("] - que front: %d   - que rear: %d\n", que.front, que.rear);
 }
+
+bool q_arr_is_empty(Queue_Arr que){
+    return que.front == que.rear;
+}
+
+bool q_arr_is_full(Queue_Arr que){
+    return ((que.rear - que.front == -1) || (que.rear - que.front == (que.size - 1)));
+}
+
+Queue_Node_Singly* q_ll_create_node(int data){
+    Queue_Node_Singly* newNode = (Queue_Node_Singly*)malloc(sizeof(Queue_Node_Singly));
+    if (!newNode) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+Queue_ll* q_ll_create_queue(){
+    Queue_ll* queue = (Queue_ll*)malloc(sizeof(Queue_ll));
+    if (!queue) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+    queue->front = queue->rear = NULL;
+    return queue;
+}
+
+void q_ll_enqueue(Queue_ll *que, int data){
+    Queue_Node_Singly* newNode = q_ll_create_node(data);
+
+    if (que->rear == NULL) {  // If the queue is empty, both front and rear point to the new node
+        que->front = que->rear = newNode;
+    }
+    else{                       // Add the new node
+        que->rear->next = newNode;
+        que->rear = newNode;
+    }
+}
+
+void q_ll_dequeue(Queue_ll *que){
+    if (que->front == NULL) {
+        printf(FORERED);
+        printf("[ERROR] Queue is empty, could not dequeued!\n");
+        printf(RESETTEXT);
+    }
+    else{
+        // Store the front node and move the front pointer to the next node
+        Queue_Node_Singly *temp = que->front;
+        int data = temp->data;
+        que->front = que->front->next;
+
+        // If the front becomes NULL, set the rear to NULL as well
+        if (que->front == NULL) {
+            que->rear = NULL;
+        }
+
+        // Free the dequeued node
+        free(temp);
+        temp = NULL;
+    }
+}
+
+void q_ll_display(Queue_ll *que){
+    if (que->front == NULL) {
+        printf(FORERED);
+        printf("[ERROR] Queue is empty, could not displayed!\n");
+        printf(RESETTEXT);
+    }
+    else{
+        Queue_Node_Singly *temp = que->front;
+        printf("Queue: ");
+        while (temp) {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}

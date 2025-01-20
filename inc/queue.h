@@ -19,10 +19,10 @@ typedef struct
     int *Queue_Element; // data array
 }Queue_Arr;             
 
-// it is just a singly linked list
+// it is a singly linked list
 typedef struct Queue_Node_S
 {
-    int data;
+    void *data;
     struct Queue_Node_S *next;
 }Queue_Node_Singly;
 
@@ -53,17 +53,24 @@ bool q_arr_is_full(Queue_Arr que);
 
 // LINKED LISTS
 
-Queue_Node_Singly* q_ll_create_node(int data);
+Queue_Node_Singly* q_ll_create_node(void *data);
 
 Queue_ll* q_ll_create_queue();
 
-void q_ll_enqueue(Queue_ll *que, int data);
+void q_ll_enqueue(Queue_ll *que, void *data);
 
-void q_ll_dequeue(Queue_ll *que);
+void *q_ll_dequeue(Queue_ll *que);
 
-void q_ll_display(Queue_ll *que);
+void q_ll_display(Queue_ll *que, void (print_func)(void *));
+
+void print_int(void *data);
 
 int q_ll_count(Queue_ll *que);
+
+
+int q_ll_is_empty(Queue_ll *que);
+
+
 
 #endif
 

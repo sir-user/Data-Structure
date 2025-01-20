@@ -75,7 +75,8 @@ bool q_arr_is_full(Queue_Arr que){
     return ((que.rear - que.front == -1) || (que.rear - que.front == (que.size - 1)));
 }
 
-Queue_Node_Singly* q_ll_create_node(int data){
+
+Queue_Node_Singly* q_ll_create_node(void *data){
     Queue_Node_Singly* newNode = (Queue_Node_Singly*)malloc(sizeof(Queue_Node_Singly));
     if (!newNode) {
         printf("Memory allocation failed!\n");
@@ -96,7 +97,7 @@ Queue_ll* q_ll_create_queue(){
     return queue;
 }
 
-void q_ll_enqueue(Queue_ll *que, int data){
+void q_ll_enqueue(Queue_ll *que, void *data){
     Queue_Node_Singly* newNode = q_ll_create_node(data);
 
     if (que->rear == NULL) {  // If the queue is empty, both front and rear point to the new node
@@ -108,7 +109,7 @@ void q_ll_enqueue(Queue_ll *que, int data){
     }
 }
 
-void q_ll_dequeue(Queue_ll *que){
+void *q_ll_dequeue(Queue_ll *que){
     if (que->front == NULL) {
         printf(FORERED);
         printf("[ERROR] Queue is empty, could not dequeued!\n");
@@ -117,7 +118,7 @@ void q_ll_dequeue(Queue_ll *que){
     else{
         // Store the front node and move the front pointer to the next node
         Queue_Node_Singly *temp = que->front;
-        int data = temp->data;
+        void *data = temp->data;
         que->front = que->front->next;
 
         // If the front becomes NULL, set the rear to NULL as well
@@ -127,11 +128,11 @@ void q_ll_dequeue(Queue_ll *que){
 
         // Free the dequeued node
         free(temp);
-        temp = NULL;
+        return data;
     }
 }
 
-void q_ll_display(Queue_ll *que){
+void q_ll_display(Queue_ll *que, void (print_func)(void *)){
     if (que->front == NULL) {
         printf(FORERED);
         printf("[ERROR] Queue is empty, could not displayed!\n");
@@ -141,11 +142,16 @@ void q_ll_display(Queue_ll *que){
         Queue_Node_Singly *temp = que->front;
         printf("Queue: ");
         while (temp) {
-            printf("%d ", temp->data);
+            //printf("%d ", temp->data);
+            print_func(temp->data);
             temp = temp->next;
         }
         printf("\n");
     }
+}
+
+void print_int(void *data){
+    printf("%d ", *(int*)data);
 }
 
 int q_ll_count(Queue_ll *que){
@@ -164,4 +170,8 @@ int q_ll_count(Queue_ll *que){
         }
         return counter;
     }
+}
+
+int q_ll_is_empty(Queue_ll *que){
+    return que->front == NULL;
 }

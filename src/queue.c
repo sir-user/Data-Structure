@@ -61,9 +61,10 @@ void q_arr_display_array(Queue_Arr que){
 void q_arr_display_queue(Queue_Arr que){
     printf("Queue: [ ");
     
-    for(int i = que.front; i <= que.rear + que.size; i++)
-        printf("%d ",que.Queue_Element[i%que.size]);
-
+    for(int i = que.front; i <= que.rear + que.size; i++){
+        printf("%d ",que.Queue_Element[i]);
+        if (i>=que.size-1) break;
+    }
     printf("] - que front: %d   - que rear: %d\n", que.front, que.rear);
 }
 
@@ -75,6 +76,15 @@ bool q_arr_is_full(Queue_Arr que){
     return ((que.rear - que.front == -1) || (que.rear - que.front == (que.size - 1)));
 }
 
+void q_arr_destroy(Queue_Arr *que){
+    if (que->Queue_Element != NULL) {
+        free(que->Queue_Element);
+        que->Queue_Element = NULL;
+    }
+    que->size = 0;
+    que->front = -1;
+    que->rear = -1;
+}
 
 Queue_Node_Singly* q_ll_create_node(void *data){
     Queue_Node_Singly* newNode = (Queue_Node_Singly*)malloc(sizeof(Queue_Node_Singly));
@@ -174,4 +184,19 @@ int q_ll_count(Queue_ll *que){
 
 int q_ll_is_empty(Queue_ll *que){
     return que->front == NULL;
+}
+
+void q_ll_destroy(Queue_ll *que){
+    Queue_Node_Singly *current = que->front;
+    Queue_Node_Singly *next;
+
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    que->front = NULL;
+    que->rear = NULL;
+    free(que); // Kuyruğun kendisini de serbest bırakıyoruz.
 }

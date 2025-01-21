@@ -50,6 +50,7 @@ bool q_arr_is_empty(Queue_Arr que);
 
 bool q_arr_is_full(Queue_Arr que);
 
+void q_arr_destroy(Queue_Arr *que);
 
 // LINKED LISTS
 
@@ -67,9 +68,9 @@ void print_int(void *data);
 
 int q_ll_count(Queue_ll *que);
 
-
 int q_ll_is_empty(Queue_ll *que);
 
+void q_ll_destroy(Queue_ll *que);
 
 
 #endif

@@ -8,12 +8,15 @@ static Tree_Node_Doubly *t_create_node(int data){
             printf("[INFO] Retrying memory allocation... Attemp %d!\n", i);
             new_node = (Tree_Node_Doubly *)malloc(sizeof(Tree_Node_Doubly));
             if (new_node) break;
-            else continue;
         }
-        printf(FORERED);
-        printf("[ERROR] Malloc Failed!\n");
+        if(new_node == NULL){
+            printf(FORERED);
+            printf("[ERROR] Malloc Failed! Node couldn't created\n");
+            printf(RESETTEXT);
+            return NULL;
+        }
+        printf("[INFO] Malloc Succeeded!\n");
         printf(RESETTEXT);
-        exit(1);
     }
     new_node->data = data;
     new_node->left_child = NULL;
@@ -24,12 +27,19 @@ static Tree_Node_Doubly *t_create_node(int data){
 void t_insert_node_lo(Tree_Node_Doubly **root, int data){
     Tree_Node_Doubly *new_node = t_create_node(data);
 
-    if (*root == NULL) { // If the tree is empty
+    if (new_node == NULL) {
+        printf(FORERED);
+        printf("[ERROR] Node couldn't created! Inserting terminated\n");
+        printf(RESETTEXT);
+        return;
+    }
+
+    if (*root == NULL) { // If tree is empty
         *root = new_node;
     }
     else{
         Queue_ll *queue = q_ll_create_queue();
-        q_ll_enqueue(queue, *root); // Enqueue the root node
+        q_ll_enqueue(queue, *root); // Enqueue the root-node
 
         while (!q_ll_is_empty(queue)) {
             Tree_Node_Doubly *current = q_ll_dequeue(queue);
@@ -55,6 +65,14 @@ void t_insert_node_lo(Tree_Node_Doubly **root, int data){
 
 void t_insert_element(Tree_Node_Doubly **root, int data, int place){
     Tree_Node_Doubly *new_node = t_create_node(data);
+
+    if (new_node == NULL) {
+        printf(FORERED);
+        printf("[ERROR] Node couldn't created! Inserting terminated\n");
+        printf(RESETTEXT);
+        return;
+    }
+
     if (!place && (*root)->left_child == NULL ) {
         (*root)->left_child = new_node;
     }
@@ -99,7 +117,9 @@ int t_height(Tree_Node_Doubly *root){
 // Display Functions
 void t_level_order_traversal(Tree_Node_Doubly *root){
     if (root == NULL) {
+        printf(FOREYEL);
         printf("[ERROR] Tree is empty, nothing to print!\n");
+        printf(RESETTEXT);
         return;
     }
 
@@ -123,26 +143,39 @@ void t_level_order_traversal(Tree_Node_Doubly *root){
 }
 
 void t_pre_order_traversal(Tree_Node_Doubly* root){
-    if (root != NULL) {
-        printf("%d ", root->data); 
-        t_pre_order_traversal(root->left_child); 
-        t_pre_order_traversal(root->right_child);
+    if (root == NULL){
+        printf(FOREYEL);
+        printf("[WARNING] Tree is empty, nothing to print!\n");
+        printf(RESETTEXT);
+        return;
     }
+    printf("%d ", root->data); 
+    t_pre_order_traversal(root->left_child); 
+    t_pre_order_traversal(root->right_child);
 }
 
 void t_in_order_traversal(Tree_Node_Doubly* root){
-    if (root != NULL) {
-        t_in_order_traversal(root->left_child); 
-        printf("%d ", root->data); 
-        t_in_order_traversal(root->right_child);
+    if (root == NULL){
+        printf(FOREYEL);
+        printf("[WARNING] Tree is empty, nothing to print!\n");
+        printf(RESETTEXT);
+        return;
     }
+    t_in_order_traversal(root->left_child); 
+    printf("%d ", root->data); 
+    t_in_order_traversal(root->right_child);
+
 }
 
 void t_post_order_traversal(Tree_Node_Doubly* root){
-    if (root != NULL) {
-        t_post_order_traversal(root->left_child); 
-        t_post_order_traversal(root->right_child);
-        printf("%d ", root->data); 
+    if (root == NULL){
+        printf(FOREYEL);
+        printf("[WARNING] Tree is empty, nothing to print!\n");
+        printf(RESETTEXT);
+        return;
     }
+    t_post_order_traversal(root->left_child); 
+    t_post_order_traversal(root->right_child);
+    printf("%d ", root->data); 
 }
 
